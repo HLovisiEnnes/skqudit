@@ -1,0 +1,9 @@
+# Shell scripts for CI/CD
+commit_actions.sh
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+
+# All csv for saving nets
+*.csv
