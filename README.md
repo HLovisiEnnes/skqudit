@@ -3,10 +3,10 @@ SKQudit (pronounced *s-q-dit*) is a Python implementation of the Solovay-Kitaev 
 
 The main algorithm is based on the description by [Dawrson and Nielsen](https://arxiv.org/abs/quant-ph/0505030), but also uses two additional techniques that significantly speed up computations:
 
-- A [*meet in the middle*](https://www.geeksforgeeks.org/dsa/meet-in-the-middle/) approach for querying nets of gates;
 - The geometry of the group $SU(d)$ for a probabilistic [Locality Sensitive Hashing](https://en.wikipedia.org/wiki/Locality-sensitive_hashing).
+- A [*meet in the middle*](https://www.geeksforgeeks.org/dsa/meet-in-the-middle/) approach for querying nets of gates. Combined with the LSH, not only this makes the algorithm faster, but also allows it to be executed even when RAM is a constraint (e.g., on a personal laptop).
 
-Refer to the (tutorial notebook)[notebooks/tutorial.ipynb] for extra details on the SK algorithm and our implementation.
+Refer to the [tutorial notebook](notebooks/tutorial.ipynb) for extra details on the SK algorithm and our implementation.
 
 # Installation
 You can install the project with **pip**.
@@ -27,7 +27,7 @@ python -m project --help
 ```
 
 # Example of use
-Here is an example of use of the package. For more examples, see the (tutorial notebook)[notebooks/tutorial.ipynb].
+Here is an example of use of the package. For more examples, see the [tutorial notebook](notebooks/tutorial.ipynb).
 
 ```python
 from skqudit import (
