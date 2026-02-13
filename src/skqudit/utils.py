@@ -12,6 +12,7 @@ Utils:
     SU_matrix
     su2_matrix
     lift
+    gell_mann_su3
     test_inverse
     test_unitarity
     test_special_unitarity
@@ -183,6 +184,39 @@ def lift(
     lifted[2, 2] = lift_term
 
     return lifted
+
+
+def gell_mann_su3(
+        x: float = np.pi/np.sqrt(2),
+        y: float = np.pi/np.sqrt(3),
+        z: float = np.pi/np.sqrt(5)
+        ) -> tuple[np.ndarray]:
+    '''
+    Makes a universal set for SU(3) by exponentiating the Gell-Mann matrices.
+    For this to be a generating set, we need thta x, y, z are irrationally
+    related.
+
+    Args:
+        x (float): The lambda_1 component. Defaults to pi/sqrt(2).
+        y (float): The lambda_2 component. Defaults to pi/sqrt(3).
+        z (float): The lambda_4 component. Defaults to pi/sqrt(5).
+    Returns:
+        tuple[np.ndarray]: A universal set for SU(3).
+    '''
+
+    m1 = np.array([[np.cos[x], 1j*np.sin[x], 0],
+                   [1j*np.sin[x], np.cos[x], 0],
+                   [0, 0, 1]], dtype=complex)
+
+    m2 = np.array([[np.cos[y], np.sin[y], 0],
+                   [-np.sin[y], np.cos[y], 0],
+                   [0, 0, 1]], dtype=complex)
+
+    m3 = np.array([[np.cos[z], 0, 1j*np.sin[z]],
+                   [0, 1, 0],
+                   [1j*np.sin[z], 0, np.cos[z]]], dtype=complex)
+
+    return m1, m2, m3
 
 
 '''
