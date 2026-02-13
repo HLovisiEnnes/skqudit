@@ -9,7 +9,7 @@ Utils:
     commutator
     Rx
     Rz
-    SU_matrix
+    su_matrix
     su2_matrix
     lift
     gell_mann_su3
@@ -117,7 +117,7 @@ def Rz(theta):
     ])
 
 
-def SU_matrix(dimension: int, seed: Optional[int] = None) -> np.ndarray:
+def su_matrix(dimension: int, seed: Optional[int] = None) -> np.ndarray:
     '''
     Generates a random SU(dimension) matrix by sampling in
     U(dimension) and projecting to SU(dimension).

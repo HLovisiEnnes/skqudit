@@ -17,7 +17,7 @@ from collections import defaultdict
 from itertools import product
 
 from .gates import CompiledGate
-from .utils import SU_matrix
+from .utils import su_matrix
 
 
 def buckenize(
@@ -90,7 +90,7 @@ class Bucket:
     ) -> None:
         self.gate_size = search_list[0].gate_size
         self.bucket_size = bucket_size
-        self.r_matrices = [SU_matrix(self.gate_size, seed=seed)
+        self.r_matrices = [su_matrix(self.gate_size, seed=seed)
                            for _ in range(k)]
         self.bucket_dict = defaultdict(list)
         self.search_list = search_list

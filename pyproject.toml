@@ -1,0 +1,16 @@
+[project]
+name = "skqudit"
+description = "Solovay-Kitaev for qudits with LSH acceleration"
+version = "0.0.1"
+authors = [
+    { name = "Henrique Ennes", email = "hlovisiennes@gmail.com" }
+]
+dependencies = [
+    "scipy",
+    "numpy",
+    "matplotlib"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["skqudit"]

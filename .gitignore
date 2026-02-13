@@ -1,3 +1,8 @@
+# Byte-compiled / cached files
+__pycache__/
+*.py[cod]
+*.pyo
+
 # Shell scripts for CI/CD
 commit_actions.sh
 
@@ -7,3 +12,20 @@ __pycache__/
 
 # All csv for saving nets
 *.csv
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/

@@ -35,7 +35,7 @@ from skqudit import (
     SimpleNet,
     solovay_kitaev
 )
-from skqudit.utils import SU_matrix, gell_mann_su3
+from skqudit.utils import su_matrix, gell_mann_su3
 
 # Example in dimension 3
 d = 3
@@ -57,7 +57,7 @@ net = SimpleNet(instr_set)
 net.build_net(layers)
 
 # Generate random SU(d) gate
-gate_to_approx = SU_matrix(d)
+gate_to_approx = su_matrix(d)
 
 # Run SK and plot history of errors and number of gates
 depth = 6
@@ -68,6 +68,7 @@ best_gate, hist = solovay_kitaev(
     epsilon_0=0.1,  
     scale=2,
     method='meet_in_the_middle',
+    bucket_params = {'k': 1, 'bucket_size': 0.1,  'bucket_robustness': 0}
     return_history=True,
     verbosity=3
 )
