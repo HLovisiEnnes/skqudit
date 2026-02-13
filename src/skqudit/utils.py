@@ -18,6 +18,7 @@ Utils:
     test_special_unitarity
     progress_report
     progress_bar
+    plot_history
 ------------------------------------------------------------------------------
 '''
 from typing import List, Optional
@@ -188,8 +189,7 @@ def lift(
 
 def gell_mann_su3(
         x: float = np.pi/np.sqrt(2),
-        y: float = np.pi/np.sqrt(3),
-        z: float = np.pi/np.sqrt(5)
+        y: float = np.pi/np.sqrt(5)
         ) -> tuple[np.ndarray]:
     '''
     Makes a universal set for SU(3) by exponentiating the Gell-Mann matrices.
@@ -198,25 +198,20 @@ def gell_mann_su3(
 
     Args:
         x (float): The lambda_1 component. Defaults to pi/sqrt(2).
-        y (float): The lambda_2 component. Defaults to pi/sqrt(3).
         z (float): The lambda_4 component. Defaults to pi/sqrt(5).
     Returns:
         tuple[np.ndarray]: A universal set for SU(3).
     '''
 
-    m1 = np.array([[np.cos[x], 1j*np.sin[x], 0],
-                   [1j*np.sin[x], np.cos[x], 0],
+    m1 = np.array([[np.cos(x), 1j*np.sin(x), 0],
+                   [1j*np.sin(x), np.cos(x), 0],
                    [0, 0, 1]], dtype=complex)
 
-    m2 = np.array([[np.cos[y], np.sin[y], 0],
-                   [-np.sin[y], np.cos[y], 0],
-                   [0, 0, 1]], dtype=complex)
-
-    m3 = np.array([[np.cos[z], 0, 1j*np.sin[z]],
+    m2 = np.array([[np.cos(y), 0, 1j*np.sin(y)],
                    [0, 1, 0],
-                   [1j*np.sin[z], 0, np.cos[z]]], dtype=complex)
+                   [1j*np.sin(y), 0, np.cos(y)]], dtype=complex)
 
-    return m1, m2, m3
+    return m1, m2
 
 
 '''
@@ -347,16 +342,16 @@ def plot_history(hist: List[tuple], save_plot: Optional[str] = None) -> None:
 
     _, axs = plt.subplots(1, 3, figsize=(30, 8))
 
-    # Circuit size vs log error
+    # Compilation length vs log error
     axs[0].scatter(circuit_size, errors)
-    axs[0].set_xlabel('Circuit size', fontsize=15)
+    axs[0].set_xlabel('Compilation length', fontsize=15)
     axs[0].set_ylabel('log(error)', fontsize=15)
 
-    # Recursion depth vs log circuit size
+    # Recursion depth vs log Compilation length
     circuit_size = np.log(circuit_size)
     axs[1].scatter(depth, circuit_size)
     axs[1].set_xlabel('Depth', fontsize=15)
-    axs[1].set_ylabel('log(circuit size)', fontsize=15)
+    axs[1].set_ylabel('log(compilation length)', fontsize=15)
 
     # Recursion depth vs log error
     axs[2].scatter(depth, errors)

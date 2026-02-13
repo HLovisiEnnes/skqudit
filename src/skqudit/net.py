@@ -19,11 +19,9 @@ from .gates import (
     InstructionSet,
     CompiledGate
 )
-
 from .search import (
     search
 )
-
 from .utils import (
     frobenius_norm,
     progress_report

@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 from itertools import product
 
+# Local imports
 from .gates import CompiledGate
 from .utils import su_matrix
 

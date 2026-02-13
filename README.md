@@ -3,7 +3,7 @@ SKQudit (pronounced *s-q-dit*) is a Python implementation of the Solovay-Kitaev 
 
 The main algorithm is based on the description by [Dawrson and Nielsen](https://arxiv.org/abs/quant-ph/0505030), but also uses two additional techniques that significantly speed up computations:
 
-- The geometry of the group $SU(d)$ for a probabilistic [Locality Sensitive Hashing](https://en.wikipedia.org/wiki/Locality-sensitive_hashing).
+- The geometry of the group $SU(d)$ for a probabilistic [*Locality Sensitive Hashing*](https://en.wikipedia.org/wiki/Locality-sensitive_hashing).
 - A [*meet in the middle*](https://www.geeksforgeeks.org/dsa/meet-in-the-middle/) approach for querying nets of gates. Combined with the LSH, not only this makes the algorithm faster, but also allows it to be executed even when RAM is a constraint (e.g., on a personal laptop).
 
 Refer to the [tutorial notebook](notebooks/tutorial.ipynb) for extra details on the SK algorithm and our implementation.
@@ -41,13 +41,12 @@ from skqudit.utils import su_matrix, gell_mann_su3
 d = 3
 
 # Use Gell-Mann matrices as universal gates
-s1, s2, s3 = gell_mann_su3()
+s1, s2 = gell_mann_su3()
 
 # Fix the universal gate set
 instr = { 
     's1': s1,
-    's2': s2,
-    's3': s3
+    's2': s2
 }
 instr_set = InstructionSet(instr)
 
