@@ -10,9 +10,9 @@ import pytest
 import numpy as np
 
 # Local imports
-from qc23manifold.gates import InstructionSet, CompiledGate
+from skqudit.gates import InstructionSet, CompiledGate
 # Need to change the name to avoid conflicts with pytest
-from qc23manifold.utils import test_inverse as inverse_checker
+from skqudit.utils import test_inverse as inverse_checker
 
 '''
 Fix an instruction set to use everywhere

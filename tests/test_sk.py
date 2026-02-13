@@ -10,15 +10,15 @@ import pytest
 import numpy as np
 
 # Local imports
-from qc23manifold.utils import commutator
+from skqudit.utils import commutator
 
-from qc23manifold.utils import test_unitarity as check_unitarity
-from qc23manifold.utils import (test_special_unitarity
-                                as check_special_unitarity)
+from skqudit.utils import test_unitarity as check_unitarity
+from skqudit.utils import (test_special_unitarity
+                           as check_special_unitarity)
 
-from qc23manifold.gates import InstructionSet
-from qc23manifold.net import SimpleNet
-from qc23manifold.sk import (
+from skqudit.gates import InstructionSet
+from skqudit.net import SimpleNet
+from skqudit.sk import (
     fourier_diagonalization,
     hermitian_commutator_approximation,
     commutator_approximation

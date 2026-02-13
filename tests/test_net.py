@@ -11,8 +11,8 @@ import numpy as np
 import os
 
 # Local imports
-from qc23manifold.gates import InstructionSet
-from qc23manifold.net import SimpleNet
+from skqudit.gates import InstructionSet
+from skqudit.net import SimpleNet
 
 '''
 Fix an instruction set and net

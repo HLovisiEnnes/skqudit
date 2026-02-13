@@ -9,14 +9,14 @@ Tests for the buckets module.
 import pytest
 import numpy as np
 
-from qc23manifold.gates import InstructionSet
-from qc23manifold.net import SimpleNet
-from qc23manifold.utils import (
+from skqudit.gates import InstructionSet
+from skqudit.net import SimpleNet
+from skqudit.utils import (
     Rx,
     Rz,
     su2_matrix
 )
-from qc23manifold.buckets import (
+from skqudit.buckets import (
     buckenize,
     Bucket
 )

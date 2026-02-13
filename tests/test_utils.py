@@ -9,7 +9,7 @@ Tests for utils module.
 import numpy as np
 import pytest
 
-from qc23manifold.utils import (
+from skqudit.utils import (
     frobenius_norm,
     Rx,
     Rz,
