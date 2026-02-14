@@ -143,6 +143,36 @@ def su_matrix(dimension: int, seed: Optional[int] = None) -> np.ndarray:
     return U
 
 
+def gl_matrix(dimension: int, seed: Optional[int] = None) -> np.ndarray:
+    '''
+    Generates a random GL(dimension) Gaussian matrix centered at the
+    identity and restricted to the unit sphere.
+
+    Args:
+        dimension (int): The GL dimension.
+        seed (int, optional): Seed for random number generating.
+            Defaults to None.
+
+    Returns:
+        np.ndarray: Random GL matrix.
+    '''
+    if not (seed is None):
+        # Real
+        rng = np.random.default_rng(seed=seed)
+        real = rng.standard_normal((dimension, dimension)) / np.sqrt(2)
+
+        # Imaginary
+        rng = np.random.default_rng(seed=seed-1)
+        imag = rng.standard_normal((dimension, dimension)) / np.sqrt(2)
+
+        U = real + 1j * imag
+    else:
+        U = (np.random.randn(dimension, dimension)
+             + 1j * np.random.randn(dimension, dimension))
+
+    return U / np.linalg.norm(U, 'fro')
+
+
 def su2_matrix(x: float, y: float, z: float) -> np.ndarray:
     '''
     Generates a SU(2) matrix by exponentiating an

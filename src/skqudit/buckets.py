@@ -18,7 +18,7 @@ from itertools import product
 
 # Local imports
 from .gates import CompiledGate
-from .utils import su_matrix
+from .utils import gl_matrix
 
 
 def buckenize(
@@ -53,10 +53,10 @@ def buckenize(
 class Bucket:
     '''
     Class that implements a LHS method for gates in a search list. It generates
-    k random SU matrix and computes their inner products with elements of the
-    list of gates.
+    k random norm 1 matrices and computes their inner products with elements
+    of the list of gates.
     By Cauchy-Schwartz
-        |<U,R>-<V,R>| = |<U-V,R>| <= ||U-V|| ||R|| = ||U-V|| d**(1/2),
+        |<U,R>-<V,R>| = |<U-V,R>| <= ||U-V|| ||R|| = ||U-V||,
     so close gates will have similar inner products. We use this fact to trim
     the list of possible gates V close to an input gate U, which reduces total
     search time. In practice, this is done by creating buckets (histograms)
@@ -91,7 +91,7 @@ class Bucket:
     ) -> None:
         self.gate_size = search_list[0].gate_size
         self.bucket_size = bucket_size
-        self.r_matrices = [su_matrix(self.gate_size, seed=seed)
+        self.r_matrices = [gl_matrix(self.gate_size, seed=seed)
                            for _ in range(k)]
         self.bucket_dict = defaultdict(list)
         self.search_list = search_list
