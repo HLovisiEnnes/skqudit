@@ -6,9 +6,9 @@ authors = [
     { name = "Henrique Ennes", email = "hlovisiennes@gmail.com" }
 ]
 dependencies = [
-    "scipy",
-    "numpy",
-    "matplotlib"
+    "scipy>=1.17",
+    "numpy>=2.0",
+    "matplotlib>=3.10"
 ]
 
 [tool.setuptools]
