@@ -93,4 +93,7 @@ To cite this project, please use the bib entry below.
   url = {https://github.com/HLovisiEnnes/skqudit},
   version = {0.0.1}
 }
+
+# Acknowledgement
+Especial thanks to [Chih-Kang Huang](https://github.com/chih-kang-huang) for testing the package.
 ```
