@@ -76,7 +76,6 @@ def fix_pauli_matrices():
 Test functions and class
 '''
 
-
 def test_buckenize(fix_gate_to_approximate, fix_pauli_matrices):
     '''
     Test the buckenize function.

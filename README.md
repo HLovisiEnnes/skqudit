@@ -6,6 +6,8 @@ The main algorithm is based on the description by [Dawrson and Nielsen](https://
 - The geometry of the group $SU(d)$ for a probabilistic [*Locality Sensitive Hashing*](https://en.wikipedia.org/wiki/Locality-sensitive_hashing).
 - A [*meet in the middle*](https://www.geeksforgeeks.org/dsa/meet-in-the-middle/) approach for querying nets of gates. Combined with the LSH, not only this makes the algorithm faster, but also allows it to be executed even when RAM is a constraint (e.g., on a personal laptop).
 
+After the publication of the first version of this package, the author got to know the paper ["Optimization of the Solovay-Kitaev algorithm"](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.87.052332) by Pham, Van Meter, and Horsman, where a technique very similar to meet in the middle, which they call *search space expansion*, is used to accelerate the SK algorithm. Similarly, they substitute the usual linear net search for GNAT-based methods, which can be seen as a competitor for LSH. Although similar in spirit, their implementation is different from ours and is restricted to the qubit case only. 
+
 Refer to the [tutorial notebook](notebooks/tutorial.ipynb) for extra details on the SK algorithm and our implementation.
 
 # Installation
