@@ -1,14 +1,44 @@
 # SKQudit: Solovay-Kitaev for qudits with LSH acceleration
-SKQudit (pronounced *s-q-dit*) is a Python implementation of the Solovay-Kitaev algorithm for qudits. SK's approximates any matrix in $SU(d)$ with a universal gate set within any desired level of accuracy. Unlike other implementations of SK (for example, [Qiksit's](https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.SolovayKitaev)), the gate's dimension $d$ is not restricted to a power of 2, allows its applications to the more general *qudits*.
+SKQudit (pronounced s-q-dit) is a Python package implementing the Solovay–Kitaev algorithm for arbitrary-dimensional qudits. 
 
-The main algorithm is based on the description by [Dawrson and Nielsen](https://arxiv.org/abs/quant-ph/0505030), but also uses two additional techniques that significantly speed up computations:
+In a nutshell, the Solovay–Kitaev algorithm (SK) approximates any target matrix in $SU(d)$ using a finite universal gate set, up to any desired accuracy. Unlike qubit-focused implementations (for example, [Qiskit's](https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.transpiler.passes.SolovayKitaev)), SKQudit works directly with gates in $SU(d)$ where the dimension $d$ does not need to be a power of two. This makes it suitable for experiments with general qudit compilation.
 
-- The geometry of the group $SU(d)$ for a probabilistic [*Locality Sensitive Hashing*](https://en.wikipedia.org/wiki/Locality-sensitive_hashing).
-- A [*meet in the middle*](https://www.geeksforgeeks.org/dsa/meet-in-the-middle/) approach for querying nets of gates. Combined with the LSH, not only this makes the algorithm faster, but also allows it to be executed even when RAM is a constraint (e.g., on a personal laptop).
+SKQudit combines classical SK recursion with two approximate-search techniques designed to make high-dimensional net lookup more practical:
 
-After the publication of the first version of this package, the author got to know the paper ["Optimization of the Solovay-Kitaev algorithm"](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.87.052332) by Pham, Van Meter, and Horsman, where a technique very similar to meet in the middle, which they call *search space expansion*, is used to accelerate the SK algorithm. Similarly, they substitute the usual linear net search for GNAT-based methods, which can be seen as a competitor for LSH. Although similar in spirit, their implementation is different from ours and is restricted to the qubit case only. 
+- Locality-sensitive hashing (LSH) using the geometry of $SU(d)$;
+- Meet-in-the-middle search for querying large nets of gates.
 
-Refer to the [tutorial notebook](notebooks/tutorial.ipynb) for extra details on the SK algorithm and our implementation.
+Together, these methods accelerate approximate gate lookup and make the algorithm more usable under memory constraints, including on a personal laptop.
+
+
+## Why SKQudit?
+
+Most implementations of Solovay–Kitaev focus on qubits. SKQudit was developed to experiment with synthesis for general qudits, where the geometry of $SU(d)$, memory usage, and approximate nearest-neighbor search become central implementation issues.
+
+The package is intended for:
+
+- experiments with qudit gate synthesis;
+- testing Solovay–Kitaev variants in arbitrary dimension;
+- studying tradeoffs between accuracy, circuit length, runtime, and memory;
+- educational demonstrations of quantum compiling beyond the qubit case.
+
+## Algorithmic Background
+
+The main algorithm follows the classical SK construction described by [Dawson and Nielsen](https://arxiv.org/abs/quant-ph/0505030). The implementation then modifies the net lookup step using two acceleration strategies.
+
+### Locality-Sensitive Hashing
+
+Instead of performing a naive linear search over the entire net, SKQudit uses probabilistic locality-sensitive hashing. The hash functions are designed using geometric information from the group $SU(d)$, allowing candidate gates close to the target to be retrieved more efficiently.
+
+### Meet-in-the-Middle Search
+
+SKQudit also supports a meet-in-the-middle strategy for querying nets. Rather than storing and searching only complete products of gates, the algorithm decomposes the search into smaller components and combines them during lookup. This can reduce memory requirements and make deeper nets more practical.
+
+## Relation to Prior Work
+
+After releasing the initial version of this package, I became aware of the paper ["Optimization of the Solovay–Kitaev Algorithm"](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.87.052332) by Pham, Van Meter, and Horsman. Their work uses a related search-space expansion idea and GNAT-based nearest-neighbor search to accelerate Solovay–Kitaev.
+
+SKQudit differs in implementation choices and scope: it is designed for arbitrary qudit dimensions, while their implementation focuses on the qubit case.
 
 # Installation
 You can install the project with **pip**.
